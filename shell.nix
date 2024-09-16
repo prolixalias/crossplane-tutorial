@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:pkgs.mkShell {
   packages = with pkgs; [
     gum
+    go
     gh
     kind
     kubectl
