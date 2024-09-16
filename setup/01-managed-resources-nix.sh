@@ -26,9 +26,9 @@ rm -f .env
 # Control Plane Cluster #
 #########################
 
-kind delete cluster
+# kind delete cluster
 
-kind create cluster
+# kind create cluster
 
 ##############
 # Crossplane #

@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+#
+
 set -e
 
 gum style \
@@ -42,10 +44,10 @@ rm -f .env
 # Control Plane Cluster #
 #########################
 
-kind create cluster --config kind.yaml
+#kind create cluster --config kind.yaml
 
-kubectl apply \
-    --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+#kubectl apply \
+#    --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
 ##############
 # Crossplane #
@@ -224,19 +226,61 @@ spec:
       type: backend-db
       location: remote
   parameters:
-    namespace: production
+    namespace: cto-development
     image: c8n.io/vfarcic/silly-demo:1.4.52
     port: 8080
     host: silly-demo.acme.com
     dbSecret:
       name: silly-demo-db
-      namespace: a-team
+      namespace: cto-development
+    kubernetesProviderConfigName: cluster01
+---
+apiVersion: devopstoolkitseries.com/v1alpha1
+kind: AppClaim
+metadata:
+  name: silly-demo
+spec:
+  id: silly-demo
+  compositionSelector:
+    matchLabels:
+      type: backend-db
+      location: remote
+  parameters:
+    namespace: cto-integration
+    image: c8n.io/vfarcic/silly-demo:1.4.52
+    port: 8080
+    host: silly-demo.acme.com
+    dbSecret:
+      name: silly-demo-db
+      namespace: cto-integration
+    kubernetesProviderConfigName: cluster01
+---
+apiVersion: devopstoolkitseries.com/v1alpha1
+kind: AppClaim
+metadata:
+  name: silly-demo
+spec:
+  id: silly-demo
+  compositionSelector:
+    matchLabels:
+      type: backend-db
+      location: remote
+  parameters:
+    namespace: cto-prduction
+    image: c8n.io/vfarcic/silly-demo:1.4.52
+    port: 8080
+    host: silly-demo.acme.com
+    dbSecret:
+      name: silly-demo-db
+      namespace: cto-production
     kubernetesProviderConfigName: cluster01" \
     | tee examples/azure-intro.yaml
 
 fi
 
-kubectl create namespace a-team
+kubectl create namespace cto-development
+kubectl create namespace cto-integration
+kubectl create namespace cto-production
 
 ###########
 # Argo CD #

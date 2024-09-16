@@ -2,19 +2,63 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: a-team
+  name: cto-development
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/vfarcic/crossplane-tutorial
+    repoURL: https://github.com/prolixalias/crossplane-tutorial.git
     targetRevision: HEAD
-    path: a-team
+    path: deploy/cto/development
   destination:
     server: https://kubernetes.default.svc
-    namespace: a-team
+    namespace: cto-development
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cto-integration
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/prolixalias/crossplane-tutorial.git
+    targetRevision: HEAD
+    path: deploy/cto/integration
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cto-integration
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cto-production
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/prolixalias/crossplane-tutorial.git
+    targetRevision: HEAD
+    path: deploy/cto/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cto-production
   syncPolicy:
     automated:
       selfHeal: true

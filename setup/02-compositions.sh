@@ -50,7 +50,7 @@ set -e
 # Control Plane Cluster #
 #########################
 
-kind create cluster --config kind.yaml
+# kind create cluster --config kind.yaml
 
 kubectl create namespace a-team
 
