@@ -1,0 +1,14 @@
+---
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+spec:
+  rollbackLimit: 3
+  forProvider:
+    namespace: cto-development
+    chart:
+      name: prometheus
+      repository: https://prometheus-community.github.io/
+      version: "2.40.5"
+    valuesFrom: {}
+  providerConfigRef:
+    name: helm-provider
