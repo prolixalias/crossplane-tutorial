@@ -12,4 +12,4 @@ spec:
       version: 4.6.0
     namespace: cto-development
   providerConfigRef:
-    name: crossplane-provider-helm
+    name: helm-provider
