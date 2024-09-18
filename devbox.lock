@@ -1,6 +1,54 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "_1password@2.28.0": {
+      "last_modified": "2024-05-22T06:18:38Z",
+      "resolved": "github:NixOS/nixpkgs/3f316d2a50699a78afe5e77ca486ad553169061e#_1password",
+      "source": "devbox-search",
+      "version": "2.28.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5xsaipypp1jxk7dzirw9mhxwphfkznig-1password-cli-2.28.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/5xsaipypp1jxk7dzirw9mhxwphfkznig-1password-cli-2.28.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jqq203mfn9lm9ainvp9g4srwhhgpgfm7-1password-cli-2.28.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jqq203mfn9lm9ainvp9g4srwhhgpgfm7-1password-cli-2.28.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vdh86agic8nda9mar6zhhckzga42agkp-1password-cli-2.28.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vdh86agic8nda9mar6zhhckzga42agkp-1password-cli-2.28.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/zmlqhg5k3mp8xci319b1qqxizp2rch6v-1password-cli-2.28.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/zmlqhg5k3mp8xci319b1qqxizp2rch6v-1password-cli-2.28.0"
+        }
+      }
+    },
     "awscli2@2.15.15": {
       "last_modified": "2024-03-08T08:51:52-05:00",
       "resolved": "github:NixOS/nixpkgs/a343533bccc62400e8a9560423486a3b6c11a23b#awscli2",
@@ -174,6 +222,54 @@
             }
           ],
           "store_path": "/nix/store/vgrwgqhsyw7ghcyirfbp3jdn3frjz6ms-bat-0.24.0"
+        }
+      }
+    },
+    "chezmoi@latest": {
+      "last_modified": "2024-09-12T02:28:40Z",
+      "resolved": "github:NixOS/nixpkgs/111ed8812c10d7dc3017de46cbf509600c93f551#chezmoi",
+      "source": "devbox-search",
+      "version": "2.52.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/j4g15n2s1q7sc594wf4iz49q2nkixph9-chezmoi-2.52.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/j4g15n2s1q7sc594wf4iz49q2nkixph9-chezmoi-2.52.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pzz4hza0x0f1s01waa6j0k441wjzq992-chezmoi-2.52.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pzz4hza0x0f1s01waa6j0k441wjzq992-chezmoi-2.52.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/r0g6f5fhfmngvy8kdhqndki0rwpfmvky-chezmoi-2.52.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/r0g6f5fhfmngvy8kdhqndki0rwpfmvky-chezmoi-2.52.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/09lm5xl39j7qdw0jr876q2yzvalx4hn0-chezmoi-2.52.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/09lm5xl39j7qdw0jr876q2yzvalx4hn0-chezmoi-2.52.2"
         }
       }
     },

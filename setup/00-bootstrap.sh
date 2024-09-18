@@ -3,14 +3,16 @@
 
 set -e
 
+clear
+
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
-	--margin "1 2" --padding "2 4" \
-	'Initial setup'
+	--align center --margin "1 2" --padding "2 4" \
+	'Bootstrap'
 
 gum confirm '
 Are you ready to start?
-Select "Yes" only if you intend to deploy ArgoCD and Headlamp.
+Select "Yes" only if you intend to deploy a local cluster with Headlamp and ArgoCD.
 Feel free to say "No" and inspect the script if you prefer setting up resources manually.
 ' || exit 0
 
@@ -20,10 +22,10 @@ echo "
 |----------------|---------------------|---------------------------------------------------|
 |kind            |Yes                  |'https://kind.sigs.k8s.io/docs/user/quick-start/#installation'|
 |kubectl         |Yes                  |'https://kubernetes.io/docs/tasks/tools/#kubectl'  |
-|crossplane CLI  |Yes                  |'https://docs.crossplane.io/latest/cli'            |
+|crossplane cli  |Yes                  |'https://docs.crossplane.io/latest/cli'            |
 |yq              |Yes                  |'https://github.com/mikefarah/yq#install'          |
-|AWS CLI         |No                   |'https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html'|
-|az CLI          |No                   |'https://learn.microsoft.com/cli/azure/install-azure-cli'|
+|aws cli         |No                   |'https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html'|
+|az cli          |No                   |'https://learn.microsoft.com/cli/azure/install-azure-cli'|
 
 If you are running this script from **devbox**, most of the requirements are already set with the exception of **hyperscaler account**.
 " | gum format
@@ -36,9 +38,9 @@ echo "## Which Hyperscaler do you want to use?" | gum format
 
 HYPERSCALER=$(gum choose "aws" "azure" "local")
 
-echo "export HYPERSCALER=$HYPERSCALER" >> .env
-
 rm -f .env
+
+echo "export HYPERSCALER=$HYPERSCALER" >> .env
 
 #########################
 # Control Plane Cluster #

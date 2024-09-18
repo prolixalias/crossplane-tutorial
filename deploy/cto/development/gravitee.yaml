@@ -1,0 +1,15 @@
+---
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: gravitee-api-management
+spec:
+  rollbackLimit: 2
+  forProvider:
+    chart:
+      name: graviteeio-apimx3
+      repository: https://helm.gravitee.io
+      version: 4.6.0
+    namespace: cto-development
+  providerConfigRef:
+    name: crossplane-provider-helm

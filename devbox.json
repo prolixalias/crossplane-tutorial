@@ -1,6 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.5/.schema/devbox.schema.json",
+  "config": {
+    "allowUnfree": true
+  },
   "packages": [
+    "_1password@2.28.0",
+    "chezmoi@latest",
     "bat@0.24.0",
     "eza@0.18.16",
     "kind@0.24.0",
