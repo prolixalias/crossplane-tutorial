@@ -11,17 +11,11 @@ spec:
       repository: https://helm.gravitee.io
       version: 4.4.9
     namespace: cto-development
-    valuesObject:
-      - name: portal.ingress.hosts
-        value:
-          - "apim.127.0.0.1.nip.io"
-      - name: portal.ingress.ingressClassName
-        value: "nginx"
-      - name: ui.ingress.hosts
-        value:
-          - "apim.127.0.0.1.nip.io"
-      - name: ui.ingress.ingressClassName
-        value: "nginx"
+    values:
+      portal.ingress.hosts: ["apim.127.0.0.1.nip.io"]
+      portal.ingress.ingressClassName: "nginx"
+      ui.ingress.hosts: ["apim.127.0.0.1.nip.io"]
+      ui.ingress.ingressClassName: "nginx"
   providerConfigRef:
     name: provider-helm
 ---
