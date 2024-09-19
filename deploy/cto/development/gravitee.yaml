@@ -21,3 +21,33 @@ spec:
     namespace: cto-development
   providerConfigRef:
     name: provider-helm
+---
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: gravitee-access-management
+spec:
+  rollbackLimit: 2
+  forProvider:
+    chart:
+      name: am
+      repository: https://helm.gravitee.io
+      version: 4.3.0
+    namespace: cto-development
+  providerConfigRef:
+    name: provider-helm
+---
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: gravitee-alert-engine
+spec:
+  rollbackLimit: 2
+  forProvider:
+    chart:
+      name: ae
+      repository: https://helm.gravitee.io
+      version: 1.1.46
+    namespace: cto-development
+  providerConfigRef:
+    name: provider-helm
