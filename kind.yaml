@@ -1,7 +1,7 @@
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 networking:
-  serviceSubnet: "10.96.0.0/27"
+  serviceSubnet: "10.96.0.0/16"
 nodes:
 - role: control-plane
   image: kindest/node:v1.28.9@sha256:dca54bc6a6079dd34699d53d7d4ffa2e853e46a20cd12d619a09207e35300bd0
@@ -20,3 +20,10 @@ nodes:
     protocol: TCP
 - role: worker
   image: kindest/node:v1.28.9@sha256:dca54bc6a6079dd34699d53d7d4ffa2e853e46a20cd12d619a09207e35300bd0
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "node-role.kubernetes.io/worker=worker"
+

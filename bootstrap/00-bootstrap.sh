@@ -36,7 +36,7 @@ Do you have those tools installed?
 
 echo "## Which Hyperscaler do you want to use?" | gum format
 
-HYPERSCALER=$(gum choose "aws" "azure" "local")
+HYPERSCALER=$(gum choose "local" "aws" "azure")
 
 clear
 
@@ -44,18 +44,56 @@ rm -f .env
 
 echo "export HYPERSCALER=$HYPERSCALER" >> .env
 
-###########################
-## Control Plane Cluster ##
-###########################
+##############
+##  Cluster ##
+##############
 
 KIND_EXPERIMENTAL_PROVIDER=nerdctl kind create cluster --config kind.yaml || true
+# dumb workaround since patching init doesn't work
+kubectl label node kind-worker node-role.kubernetes.io/worker=worker
+
+##############################
+## NGINX Ingress Controller ##
+##############################
+
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx \
+  --create-namespace \
+  --values bootstrap/nginx-ingress-controller/helm-values.yaml
+
+################
+## Prometheus ##
+################
+
+# helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+# helm repo update
+
+helm upgrade --install prometheus prometheus \
+    --repo https://prometheus-community.github.io/helm-charts \
+    --namespace prometheus \
+    --create-namespace \
+    --wait
+
+##############
+## Grafana ##
+##############
+
+# helm repo add graphana https://graphana.github.io/helm-charts
+# helm repo update
+
+helm upgrade --install grafana grafana \
+    --repo https://grafana.github.io/helm-charts \
+    --namespace grafana \
+    --create-namespace \
+    --wait
 
 ################
 ## Crossplane ##
 ################
 
-helm repo add crossplane-stable https://charts.crossplane.io/stable
-helm repo update
+# helm repo add crossplane-stable https://charts.crossplane.io/stable
+# helm repo update
 
 helm upgrade --install crossplane crossplane \
     --repo https://charts.crossplane.io/stable \
@@ -78,6 +116,8 @@ gum spin --spinner dot \
 
 kubectl wait --for=condition=healthy provider.pkg.crossplane.io \
     --all --timeout=1800s
+
+kubectl apply --filename providers/$HYPERSCALER-config.yaml
 
 if [[ "$HYPERSCALER" == "local" ]]; then
 
@@ -224,16 +264,6 @@ fi
 kubectl create namespace cto-development || true
 kubectl create namespace cto-integration || true
 kubectl create namespace cto-production || true
-
-##############################
-## NGINX Ingress Controller ##
-##############################
-
-helm upgrade --install ingress-nginx ingress-nginx \
-  --repo https://kubernetes.github.io/ingress-nginx \
-  --namespace ingress-nginx \
-  --create-namespace \
-  --values bootstrap/nginx-ingress-controller/helm-values.yaml
 
 ##############
 ## Headlamp ##

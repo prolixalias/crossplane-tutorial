@@ -1,13 +1,5 @@
 ---
 apiVersion: helm.crossplane.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: provider-helm
-spec:
-  credentials:
-    source: InjectedIdentity
----
-apiVersion: helm.crossplane.io/v1beta1
 kind: Release
 metadata:
   name: gravitee-api-management
@@ -19,6 +11,17 @@ spec:
       repository: https://helm.gravitee.io
       version: 4.4.9
     namespace: cto-development
+    set:
+      - name: portal.ingress.hosts
+        value:
+          - "apim.127.0.0.1.nip.io"
+      - name: portal.ingress.ingressClassName
+        value: "nginx"
+      - name: ui.ingress.hosts
+        value:
+          - "apim.127.0.0.1.nip.io"
+      - name: ui.ingress.ingressClassName
+        value: "nginx"
   providerConfigRef:
     name: provider-helm
 ---
