@@ -6,3 +6,11 @@ metadata:
 spec:
   credentials:
     source: InjectedIdentity
+---
+apiVersion: kubernetes.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: crossplane-provider-kubernetes
+spec:
+  credentials:
+    source: InjectedIdentity

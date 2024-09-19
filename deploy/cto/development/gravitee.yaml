@@ -115,3 +115,65 @@ spec:
           hosts: ["ae.127.0.0.1.nip.io"]
   providerConfigRef:
     name: provider-helm
+---
+apiVersion: kubernetes.crossplane.io/v1alpha2
+kind: Object
+metadata:
+  annotations:
+    uptest.upbound.io/timeout: "60"
+spec:
+  forProvider:
+    manifest:
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          traefik.ingress.kubernetes.io/ssl-redirect: false
+        name: gravitee-access-management-api-ingress
+        namespace: cto-development
+      spec:
+        rules:
+          - host: apim.${domain}
+            http:
+              paths:
+                - backend:
+                    service:
+                      name: gravitee-api-management-apim-api
+                      port:
+                        number: 83
+                  pathType: ImplementationSpecific
+        tls: []
+  providerConfigRef:
+    name: kubernetes-provider
+---
+apiVersion: kubernetes.crossplane.io/v1alpha2
+kind: Object
+metadata:
+  annotations:
+    uptest.upbound.io/timeout: "60"
+spec:
+  forProvider:
+    manifest:
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          traefik.ingress.kubernetes.io/ssl-redirect: false
+        name: gravitee-access-management-gateway-ingress
+        namespace: cto-development
+      spec:
+        rules:
+          - host: apim.${domain}
+            http:
+              paths:
+                - backend:
+                    service:
+                      name: gravitee-api-management-apim-gateway
+                      port:
+                        number: 82
+                  pathType: ImplementationSpecific
+        tls: []
+  providerConfigRef:
+    name: kubernetes-provider

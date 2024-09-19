@@ -26,4 +26,13 @@ nodes:
     nodeRegistration:
       kubeletExtraArgs:
         node-labels: "node-role.kubernetes.io/worker=worker"
+- role: worker
+  image: kindest/node:v1.28.9@sha256:dca54bc6a6079dd34699d53d7d4ffa2e853e46a20cd12d619a09207e35300bd0
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "node-role.kubernetes.io/worker=worker"
+
 

@@ -51,6 +51,7 @@ echo "export HYPERSCALER=$HYPERSCALER" >> .env
 KIND_EXPERIMENTAL_PROVIDER=nerdctl kind create cluster --config kind.yaml || true
 # dumb workaround since patching init doesn't work
 kubectl label node kind-worker node-role.kubernetes.io/worker=worker
+kubectl label node kind-worker2 node-role.kubernetes.io/worker=worker
 
 ##############################
 ## NGINX Ingress Controller ##
@@ -61,6 +62,14 @@ helm upgrade --install ingress-nginx ingress-nginx \
   --namespace ingress-nginx \
   --create-namespace \
   --values bootstrap/nginx-ingress-controller/helm-values.yaml
+
+################################
+## Traefik Ingress Controller ##
+################################
+
+helm upgrade --install traefik traefik \
+  --repo https://traefik.github.io/charts \
+  --namespace kube-system
 
 ################
 ## Prometheus ##
@@ -261,10 +270,6 @@ spec:
 
 fi
 
-kubectl create namespace cto-development || true
-kubectl create namespace cto-integration || true
-kubectl create namespace cto-production || true
-
 ##############
 ## Headlamp ##
 ##############
@@ -283,6 +288,10 @@ kubectl create token headlamp --namespace kube-system
 ###########
 # ArgoCD #
 ###########
+
+kubectl create namespace cto-development || true
+kubectl create namespace cto-integration || true
+kubectl create namespace cto-production || true
 
 REPO_URL=$(git config --get remote.origin.url)
 # workaround to avoid setting up SSH key in ArgoCD
