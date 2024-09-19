@@ -23,9 +23,9 @@ spec:
           management:
             ingressClassName: "nginx"
             hosts: ["apim.127.0.0.1.nip.io"]
-        portal:
-          ingressClassName: "nginx"
-          hosts: ["apim.127.0.0.1.nip.io"]
+          portal:
+            ingressClassName: "nginx"
+            hosts: ["apim.127.0.0.1.nip.io"]
       ui:
         ingress:
           ingressClassName: "nginx"
