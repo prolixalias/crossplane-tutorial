@@ -11,7 +11,7 @@ spec:
       repository: https://helm.gravitee.io
       version: 4.4.9
     namespace: cto-development
-    values:
+    set:
       - name: portal.ingress.hosts
         value:
           - "apim.127.0.0.1.nip.io"
