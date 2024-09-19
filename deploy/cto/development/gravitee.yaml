@@ -17,7 +17,7 @@ spec:
     chart:
       name: graviteeio-apimx3
       repository: https://helm.gravitee.io
-      version: 4.6.0
+      version: 4.4.9
     namespace: cto-development
   providerConfigRef:
     name: provider-helm
