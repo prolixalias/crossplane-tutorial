@@ -13,18 +13,7 @@ spec:
     namespace: cto-development
     values:
       api:
-        services:
-          bridge:
-            ingress:
-              ingressClassName: "nginx"
-              hosts: ["apim.127.0.0.1.nip.io"]
         gateway:
-          services:
-            core:
-              ingress:
-                ingressClassName: "nginx"
-                hosts: ["apim.127.0.0.1.nip.io"]
-        http:
           services:
             core:
               ingress:
@@ -41,11 +30,10 @@ spec:
         ingress:
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
-      federation:
+      portal:
         ingress:
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
-
   providerConfigRef:
     name: provider-helm
 ---
