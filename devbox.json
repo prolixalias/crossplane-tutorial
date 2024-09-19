@@ -25,6 +25,8 @@
   ],
   "shell": {
     "init_hook": [
+      "sudo sysctl -w fs.inotify.max_user_watches=100000",
+      "sudo sysctl -w fs.inotify.max_user_instances=100000",
       "alias cat='bat --paging never --theme DarkNeon --style plain'",
       "alias ls='eza -G --git'"
     ],
