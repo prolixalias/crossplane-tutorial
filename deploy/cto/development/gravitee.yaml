@@ -15,7 +15,7 @@ spec:
   rollbackLimit: 2
   forProvider:
     chart:
-      name: graviteeio-apimx3
+      name: apim
       repository: https://helm.gravitee.io
       version: 4.4.9
     namespace: cto-development
