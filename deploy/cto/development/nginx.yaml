@@ -1,0 +1,26 @@
+---
+apiVersion: helm.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: provider-helm
+spec:
+  credentials:
+    source: InjectedIdentity
+---
+apiVersion: helm.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: nginx
+spec:
+  rollbackLimit: 2
+  forProvider:
+    chart:
+      name: nginx
+      repository: https://charts.bitnami.com/bitnami
+      version: 18.1.15
+    namespace: cto-development
+    set:
+      - name: allowSnippetAnnotations
+        value: true
+  providerConfigRef:
+    name: provider-helm
