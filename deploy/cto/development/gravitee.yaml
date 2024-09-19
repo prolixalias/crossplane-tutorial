@@ -2,7 +2,7 @@
 apiVersion: helm.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
-  name: crossplane-provider-helm
+  name: provider-helm
 spec:
   credentials:
     source: InjectedIdentity
@@ -20,4 +20,4 @@ spec:
       version: 4.6.0
     namespace: cto-development
   providerConfigRef:
-    name: crossplane-provider-helm
+    name: provider-helm
