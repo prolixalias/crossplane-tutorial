@@ -33,22 +33,27 @@ spec:
         enabled: true
       gateway:
         ingress:
+          enabled: false
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
       api:
         ingress:
           management:
+            enabled: false
             ingressClassName: "nginx"
             hosts: ["apim.127.0.0.1.nip.io"]
           portal:
+            enabled: false
             ingressClassName: "nginx"
             hosts: ["apim.127.0.0.1.nip.io"]
       ui:
         ingress:
+          enabled: false
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
       portal:
         ingress:
+          enabled: false
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
   providerConfigRef:
@@ -69,18 +74,22 @@ spec:
     values:
       api:
         ingress:
+          enabled: false
           ingressClassName: "nginx"
           hosts: ["am.127.0.0.1.nip.io"]
       gateway:
         ingress:
+          enabled: false
           ingressClassName: "nginx"
           hosts: ["am.127.0.0.1.nip.io"]
       services:
         ingress:
+          enabled: false
           ingressClassName: "nginx"
           hosts: ["am.127.0.0.1.nip.io"]
       ui:
         ingress:
+          enabled: false
           ingressClassName: "nginx"
           hosts: ["am.127.0.0.1.nip.io"]
   providerConfigRef:
@@ -101,6 +110,7 @@ spec:
     values:
       engine:
         ingress:
+          enabled: false
           ingressClassName: "nginx"
           hosts: ["ae.127.0.0.1.nip.io"]
   providerConfigRef:
