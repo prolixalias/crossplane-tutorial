@@ -18,21 +18,34 @@ spec:
             ingress:
               ingressClassName: "nginx"
               hosts: ["apim.127.0.0.1.nip.io"]
+        gateway:
+          services:
+            core:
+              ingress:
+                ingressClassName: "nginx"
+                hosts: ["apim.127.0.0.1.nip.io"]
         http:
           services:
             core:
               ingress:
                 ingressClassName: "nginx"
                 hosts: ["apim.127.0.0.1.nip.io"]
-
-      portal:
         ingress:
+          management:
+            ingressClassName: "nginx"
+            hosts: ["apim.127.0.0.1.nip.io"]
+        portal:
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
       ui:
         ingress:
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
+      federation:
+        ingress:
+          ingressClassName: "nginx"
+          hosts: ["apim.127.0.0.1.nip.io"]
+
   providerConfigRef:
     name: provider-helm
 ---
