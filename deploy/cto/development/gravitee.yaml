@@ -15,10 +15,9 @@ spec:
       api:
         gateway:
           services:
-            core:
-              ingress:
-                ingressClassName: "nginx"
-                hosts: ["apim.127.0.0.1.nip.io"]
+            ingress:
+              ingressClassName: "nginx"
+              hosts: ["apim.127.0.0.1.nip.io"]
         ingress:
           management:
             ingressClassName: "nginx"
