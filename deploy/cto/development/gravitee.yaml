@@ -13,10 +13,9 @@ spec:
     namespace: cto-development
     values:
       gateway:
-        services:
-          ingress:
-            ingressClassName: "nginx"
-            hosts: ["apim.127.0.0.1.nip.io"]
+        ingress:
+          ingressClassName: "nginx"
+          hosts: ["apim.127.0.0.1.nip.io"]
       api:
         ingress:
           management:
