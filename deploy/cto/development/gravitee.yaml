@@ -40,6 +40,14 @@ spec:
         ingress:
           ingressClassName: "nginx"
           hosts: ["am.127.0.0.1.nip.io"]
+      gateway:
+        ingress:
+          ingressClassName: "nginx"
+          hosts: ["am.127.0.0.1.nip.io"]
+      services:
+        ingress:
+          ingressClassName: "nginx"
+          hosts: ["am.127.0.0.1.nip.io"]
       ui:
         ingress:
           ingressClassName: "nginx"
