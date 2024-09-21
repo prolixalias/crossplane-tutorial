@@ -147,13 +147,14 @@ spec:
 #   providerConfigRef:
 #     name: crossplane-kubernetes-provider
 ---
-apiVersion: kubernetes.crossplane.io/v1alpha1
+apiVersion: kubernetes.crossplane.io/v1alpha2
 kind: Object
 metadata:
   annotations:
     uptest.upbound.io/timeout: "60"
 spec:
   forProvider:
+    managementPolicies: ["*"]
     manifest:
       apiVersion: networking.k8s.io/v1
       kind: Ingress
