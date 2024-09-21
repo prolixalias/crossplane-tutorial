@@ -1,4 +1,15 @@
 ---
+
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: debug-config
+spec:
+  args:
+    - --debug
+
+---
+
 apiVersion: helm.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
@@ -6,11 +17,13 @@ metadata:
 spec:
   credentials:
     source: InjectedIdentity
+
 ---
+
 apiVersion: kubernetes.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
-  name: crossplane-kubernetes-provider
+  name: kubernetes-provider
 spec:
   credentials:
     source: InjectedIdentity

@@ -1,4 +1,5 @@
 ---
+
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
@@ -9,7 +10,9 @@ spec:
     apiVersion: pkg.crossplane.io/v1beta1
     kind: DeploymentRuntimeConfig
     name: crossplane-provider-helm
+
 ---
+
 apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
@@ -18,7 +21,9 @@ spec:
   serviceAccountTemplate:
     metadata:
       name: crossplane-provider-helm
+
 ---
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
