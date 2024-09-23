@@ -33,17 +33,17 @@ spec:
         enabled: true
       gateway:
         ingress:
-          enabled: false
+          enabled: true
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
       api:
         ingress:
           management:
-            enabled: false
+            enabled: true
             ingressClassName: "nginx"
             hosts: ["apim.127.0.0.1.nip.io"]
           portal:
-            enabled: false
+            enabled: true
             ingressClassName: "nginx"
             hosts: ["apim.127.0.0.1.nip.io"]
       ui:
@@ -53,7 +53,7 @@ spec:
           hosts: ["apim.127.0.0.1.nip.io"]
       portal:
         ingress:
-          enabled: false
+          enabled: true
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
   providerConfigRef:
