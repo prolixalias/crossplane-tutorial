@@ -1,4 +1,5 @@
 ---
+
 apiVersion: helm.crossplane.io/v1beta1
 kind: Release
 metadata:
@@ -12,8 +13,10 @@ spec:
       version: 2.4.1
     namespace: cto-development
   providerConfigRef:
-    name: provider-helm
+    name: crossplane-provider-helm
+
 ---
+
 apiVersion: helm.crossplane.io/v1beta1
 kind: Release
 metadata:
@@ -57,8 +60,10 @@ spec:
           ingressClassName: "nginx"
           hosts: ["apim.127.0.0.1.nip.io"]
   providerConfigRef:
-    name: provider-helm
+    name: crossplane-provider-helm
+
 ---
+
 apiVersion: helm.crossplane.io/v1beta1
 kind: Release
 metadata:
@@ -93,8 +98,10 @@ spec:
           ingressClassName: "nginx"
           hosts: ["am.127.0.0.1.nip.io"]
   providerConfigRef:
-    name: provider-helm
+    name: crossplane-provider-helm
+
 ---
+
 apiVersion: helm.crossplane.io/v1beta1
 kind: Release
 metadata:
@@ -114,8 +121,10 @@ spec:
           ingressClassName: "nginx"
           hosts: ["ae.127.0.0.1.nip.io"]
   providerConfigRef:
-    name: provider-helm
+    name: crossplane-provider-helm
+
 # ---
+
 # apiVersion: kubernetes.crossplane.io/v1alpha2
 # kind: Object
 # metadata:
@@ -145,8 +154,10 @@ spec:
 #                   pathType: ImplementationSpecific
 #         tls: []
 #   providerConfigRef:
-#     name: crossplane-kubernetes-provider
+#     name: crossplane-provider-kubernetes
+#
 # ---
+#
 # apiVersion: kubernetes.crossplane.io/v1alpha2
 # kind: Object
 # metadata:
@@ -177,4 +188,4 @@ spec:
 #                   pathType: ImplementationSpecific
 #         tls: []
 #   providerConfigRef:
-#     name: crossplane-kubernetes-provider
+#     name: crossplane-provider-kubernetes
